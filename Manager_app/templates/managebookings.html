@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+    
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <a class="btn btn-danger mb-3" href="{% url 'managerhome' %}"><img src="{% static 'arrow-left.svg' %}">Back to admin page</a>
+                <h4 class="card-title">Bookings</h4>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Username</th>
+                        <th>Booking slot</th>
+                        <th>Turfname</th>
+                        <th>Booking status</th>
+                        <th>Is booked</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in data %}
+                      <tr>
+                        <td>{{ i.buser.username }}</td>
+                        <td>{{ i.bslot }}</td>
+                        <td>{{ i.bturf.turfname }}</td>
+                        <td>{{ i.booked }}</td>
+                        {% if i.booked == 'not booked yet' %}
+                        <td><label class="badge badge-danger">Pending</label><a href="{% url 'updatebooking' id=i.id %}">approve</a><a class="m-2" href="{% url 'deletebooking' id=i.id %}">Decline</a></td>
+                        {% else %}
+                        <td><label class="badge badge-success">Approved</label></td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    </div>
+    
+{% endblock %}

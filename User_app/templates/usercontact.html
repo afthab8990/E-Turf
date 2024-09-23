@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Navbar start -->
+<div class="container-fluid fixed-top">
+    <div class="container topbar bg-primary d-none d-lg-block">
+        <div class="d-flex justify-content-between">
+            <div class="top-info ps-2">
+                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Ernakulam,Kerala</a></small>
+                <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
+            </div>
+            <div class="top-link pe-2">
+                <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
+                <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+            </div>
+        </div>
+    </div>
+    <div class="container px-0">
+        <nav class="navbar navbar-light bg-white navbar-expand-xl">
+            <a href="index.html" class="navbar-brand"><h1 class="text-primary display-6">E-Turf</h1></a>
+            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars text-primary"></span>
+            </button>
+            <a href="{% url 'deletesession' %}" class=" btn border border-secondary rounded-pill px-3 text-primary" >Logout </a>
+            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="{% url 'userhome' %}" class="nav-item nav-link ">Home</a>
+                    <a href="{% url 'locationsort' %}" class="nav-item nav-link">Locations</a>
+                    <a href="{% url 'turfsort' category='all' %}" class="nav-item nav-link">Turfs</a>
+                    <a href="#" class="nav-item nav-link active">Contact</a>
+                    <a href="{% url 'bookinghistory' id=request.session.username_u %}" class="nav-item nav-link">Booking history</a>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+</div>
+<br>
+<br>
+<br>
+<div class="container-fluid contact py-5">
+    <div class="container py-5">
+        <div class="p-5 bg-light rounded">
+            <div class="row g-4 justify-content-center">
+                <div class="col-12">
+                    <div class="text-center mx-auto" style="max-width: 700px;">
+                        <h1 class="text-primary">Get in touch</h1>
+                    </div>
+                </div>                
+                <div class="col-lg-7">
+                    <form action="{% url 'insertmessage' %}" method="post" class="">
+                        {% csrf_token %}
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name" name="name">
+                        <textarea class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message" name="message"></textarea>
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

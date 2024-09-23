@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+<div class="container-fluid m-3">
+  <a class="btn btn-danger" href="{% url 'adminpage'  %}">Back to admin page</a>
+  <div class="row justify-content-center">
+    {% for i in data %}
+    <div class="col-md-4 text-black">
+            <div class="card text-bg-dark mt-5 " style="width: 30rem;">
+                <img src="{{ i.turfimage.url }}" height="330px"class="card-img " alt="...">
+                <div>
+                    <div class="card-img-overlay" style="  background-color: rgba(255, 0, 0, 0);
+                    background-image:
+                      linear-gradient(
+                        to left top, 
+                        rgba(255, 0, 0, 0), #fff2e8
+                      );">
+                      <h1 class="card-title text-black" ><b>{{ i.turfname }}</b></h1>
+                      <p class="card-text">Capacity : {{ i.capacity }} players</p>
+                      <p class="card-text"> Rate : {{ i.rate }}/hour</p>
+                      <p class="card-text"> Location : {{ i.turflocation }}</p>
+                      <a class="btn btn-warning" href="{% url 'editturfs' id=i.id %}">Make changes</a>
+                      <a class="btn btn-danger mt-2" href="{% url 'deleteturf' id=i.id %}">Delete turf</a>
+                      
+                    </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Navbar start -->
+<div class="container-fluid fixed-top">
+    <div class="container topbar bg-primary d-none d-lg-block">
+        <div class="d-flex justify-content-between">
+            <div class="top-info ps-2">
+                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Ernakulam,Kerala</a></small>
+                <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
+            </div>
+            <div class="top-link pe-2">
+                <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
+                <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+            </div>
+        </div>
+    </div>
+    <div class="container px-0">
+        <nav class="navbar navbar-light bg-white navbar-expand-xl">
+            <a href="index.html" class="navbar-brand"><h1 class="text-primary display-6">E-Turf</h1></a>
+            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars text-primary"></span>
+            </button>
+            <a href="{% url 'deletesession' %}" class=" btn border border-secondary rounded-pill px-3 text-primary" >Logout </a>
+            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="{% url 'userhome' %}" class="nav-item nav-link ">Home</a>
+                    <a href="#" class="nav-item nav-link">Locations</a>
+                    <a href="{% url 'turfsort' category='all' %}" class="nav-item nav-link">Turfs</a>
+                    <a href="{% url 'usercontact' %}" class="nav-item nav-link">Contact</a>
+                    <a href="#" class="nav-item nav-link active">Booking history</a>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row">
+    
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Bookings</h4>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Turf name </th>
+                        <th>Turf location </th>
+                        <th>Booking status</th>
+                        <th>Slot</th>                    
+                        <th>User</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in data %}
+                      <tr>
+                        <td>{{ i.bturf.turfname }}</td>
+                        <td>{{ i.bturf.turflocation }}</td>
+                        <td>{{ i.booked }}</td>
+                        <td>{{ i.bslot }}</td>                        
+                        <td>{{ i.buser.name }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    </div>
+    
+{% endblock %}

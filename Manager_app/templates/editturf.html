@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+<div class="container-fluid">
+
+    <h2 class="text-center mt-4">Turf</h2>
+    <div class="row justify-content-center m-3">
+    <div class="col-md-6">
+
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Edit turfs</h4>
+              <p class="card-description">
+                Turf details
+              </p>
+              {% for i in data %}
+              <form method="post" action="{% url 'updateturfmanager' id=i.id %}" class="forms-sample" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="exampleInputName1">Turf name</label>
+                  <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="turfname" value="{{ i.turfname }}">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputName1">Turf capacity</label>
+                  <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="capacity" value="{{ i.capacity }}">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputName1">Rate per hour</label>
+                  <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="rate" value="{{ i.rate }}">
+                </div>
+                <div class="form-group">
+                  <label>File upload</label>
+                  <input type="file" name="image" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="turfimage" value="{{ i.turfimage }}">
+                  </div>
+                <button type="submit" class="btn btn-primary mr-2 mt-2">Submit</button>
+                <a class="btn btn-light mt-2" href="{% url 'managerhome' %}">Go back</a>
+              </form>
+              {% endfor %}
+            </div>
+          </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

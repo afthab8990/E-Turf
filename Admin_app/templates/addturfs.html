@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+<div class="container-fluid">
+
+    <h2 class="text-center mt-4">Turf</h2>
+    <div class="row justify-content-center m-3">
+    <div class="col-md-6">
+
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Add turfs</h4>
+              <p class="card-description">
+                Turf details
+              </p>
+              <form method="post" action="{% url 'insertturf' %}" class="forms-sample" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="exampleInputName1">Turf name</label>
+                  <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="turfname">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputName1">Turf capacity</label>
+                  <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="capacity">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputName1">Rate per hour</label>
+                  <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="rate">
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01" name="location">Location</label>
+                  <select class="form-select" id="inputGroupSelect01" name="turflocation">
+                    {% for i in data %}
+                    <option value="{{ i.city }}">{{ i.city }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01" name="location">Manager</label>
+                  <select class="form-select" id="inputGroupSelect01" name="managerof">
+                    {% for i in mdata %}
+                    <option value="{{ i.username }}">{{ i.username }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>File upload</label>
+                  <input type="file" name="image" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="turfimage">
+                  </div>
+                <button type="submit" class="btn btn-primary mr-2 mt-2">Submit</button>
+                <a class="btn btn-light mt-2" href="{% url 'adminpage' %}">Go back</a>
+              </form>
+            </div>
+          </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

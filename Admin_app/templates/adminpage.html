@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="row">
+          <div class="col-12 col-xl-12 mb-4 mb-xl-0">
+            <h3 class="font-weight-bold">Welcome Admin</h3>
+            <h6 class="font-weight-normal mb-0">You have <span class="text-primary">{% if unmdata > 0 %}
+              {{ unmdata }}New applications for managers!
+            {% else %}
+          No new managers
+        {% endif %}</span></h6>
+        <h6 class="font-weight-normal mb-0">You have <span class="text-primary">{% if unudata > 0 %}
+          {{ unmdata }} New users not verified!
+        {% else %}
+      No new users
+    {% endif %}</span></h6>
+            <div class="col">
+                <div class="template-demo text-center">
+                    
+                    <a type="button" class="btn btn-dark" href="{% url 'viewmanagers' %}">View managers</a>
+                    <a class="btn btn-dark" href="{% url 'addlocations' %}">Add locations</a>
+                    <a class="btn btn-dark" href="{% url 'viewlocations' %}">View locations</a>
+                    <a type="button" class="btn btn-dark" href="{% url 'addturfs' %}">Add turfs</a>
+                    <a type="button" class="btn btn-dark" href="{% url 'viewturfs' category='all' %}">View turfs</a>
+                    <a class="btn btn-dark" href="{% url 'viewusers' %}">View users</a>
+                    <a href="{% url 'viewbookings' %}" type="button" class="btn btn-dark">View bookings</button>
+                    
+                    <a href="{% url 'viewcontacts' %}" type="button" class="btn btn-dark">View contacts</a>
+                </div>                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 grid-margin stretch-card text-white">
+        <div class="card tale-bg">
+          <div class="card-people mt-auto">
+            <img src="{% static 'turfgg.jpg' %}" alt="people">
+            <div class="weather-info">
+              <div class="d-flex">
+                <div class="ml-2">
+                  <h2 class="location font-weight-normal">Total turfs:</h2>
+                  <h1 class="font-weight-normal">{{ tdata.count }}</h1>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 grid-margin transparent">
+        <div class="row">
+          <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-tale">
+              <div class="card-body">
+                <h2 class="mb-4">Bookings</h2>
+                <h2 class="fs-30 mb-2">{{ bdata.count }}</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-dark-blue">
+              <div class="card-body">
+                <h2 class="mb-4">Locations</h2>
+                <h2 class="fs-30 mb-2">{{ ldata.count }}</h2>                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+            <div class="card card-light-blue">
+              <div class="card-body">
+                <h2 class="mb-4">Managers</h2>
+                <h2 class="fs-30 mb-2">{{ mdata.count }}</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 stretch-card transparent">
+            <div class="card card-light-danger">
+              <div class="card-body">
+                <h2 class="mb-4">Users</h2>
+                <h2 class="fs-30 mb-2">{{ udata.count }}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

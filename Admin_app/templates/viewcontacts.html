@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    <a class="btn btn-danger mt-5" href="{% url 'adminpage'  %}">Back to admin page</a>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title"></h4>
+                <p class="card-description">
+                  Feedbacks
+                </p>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Feedback</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                      <tr>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.message }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

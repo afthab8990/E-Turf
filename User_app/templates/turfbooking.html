@@ -1,0 +1,103 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block nav %}{% endblock %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="container py-5">
+    <div class="p-5 bg-light rounded">
+        <div class="row g-4 justify-content-center">
+            <div class="col-12">
+                <div class="text-center mx-auto" style="max-width: 700px;">
+                    <h1 class="text-primary">Booking</h1>
+                    <p class="mb-4">Book the turf</p>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="h-100 rounded text-center">
+                    {% for i in data %}
+                    <div class="rounded position-relative fruite-item" >
+                                        <div class="fruite-img">
+                                            <img src="{{ i.turfimage.url }}" style=" width:fit-content" class="img-fluid rounded-top" alt="">
+                                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex p-4 rounded mb-4 bg-white">
+                    <i class="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
+                    <div>
+                        {% for i in data %}
+                        <h4>{{ i.turflocation }}</h4>
+                        <p class="mb-2">Turfname :  {{ i.turfname }} </p>
+                        <p class="mb-2">Capacity :  {{ i.capacity }} </p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                {% for i in data %}
+            <form method="post" enctype="multipart/form-data" action="{% url 'bookslot' id=i.id %}">
+                {% csrf_token %}
+                    <div class="d-flex p-4 rounded mb-4 bg-white">
+                        <div class="input-group mb-3">
+                    
+                        <label class="input-group-text" for="inputGroupSelect01" name="Slots">Slots</label>
+                        <select class="form-select" id="inputGroupSelect01" name="bslot">
+                            <option>Monday 8-9</option>
+                            <option>Monday 9-10</option>
+                            <option>Monday 10-11</option>
+                            <option>Monday 11-12</option>
+                            <option>Monday 12-1</option>
+                            <option>Tuesday 8-9</option>
+                            <option>Tuesday 9-10</option>
+                            <option>Tuesday 10-11</option>
+                            <option>Tuesday 11-12</option>
+                            <option>Tuesday 12-1</option>
+                            <option>Wednesday 8-9</option>
+                            <option>Wednesday 9-10</option>
+                            <option>Wednesday 10-11</option>
+                            <option>Wednesday 11-12</option>
+                            <option>Wednesday 12-1</option>
+                            <option>Thursday 8-9</option>
+                            <option>Thursday 9-10</option>
+                            <option>Thursday 10-11</option>
+                            <option>Thursday 11-12</option>
+                            <option>Thursday 12-1</option>
+                            <option>Friday 8-9</option>
+                            <option>Friday 9-10</option>
+                            <option>Friday 10-11</option>
+                            <option>Friday 11-12</option>
+                            <option>Friday 12-1</option>
+                            <option>Saturday 8-9</option>
+                            <option>Saturday 9-10</option>
+                            <option>Saturday 10-11</option>
+                            <option>Saturday 11-12</option>
+                            <option>Saturday 12-1</option>
+                            <option>Sunday 8-9</option>
+                            <option>Sunday 9-10</option>
+                            <option>Sunday 10-11</option>
+                            <option>Sunday 11-12</option>
+                            <option>Sunday 12-1</option>
+                        </select>
+                      </div>
+                </div>
+                
+                <div class="d-flex p-4 rounded bg-white">
+                    <i class="fa fa-phone-alt fa-2x text-primary me-4"></i>
+                    <div>
+                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"> Request slot</button>
+                    </div>
+                </div>
+            </form>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'userhome'  %}" class="btn border border-secondary rounded-pill px-3 text-primary"> Go back to homepage</a>
+</div>
+
+{% endblock %}

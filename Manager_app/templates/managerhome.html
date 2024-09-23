@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+          <div class="row">
+            <div class="col-12 col-xl-12 mb-4 mb-xl-0">
+              <a class="btn btn-danger mt-3" href="{% url 'endsession' %}">Logout</a>
+              <h3 class="font-weight-bold m-5">Welcome manager</h3>
+              <div class="col">
+                  <div class="template-demo text-center">                  
+                      <a type="button" class="btn btn-dark" href="{% url 'yourturfs' %}">View your turfs</a>
+                      <a class="btn btn-dark" href="{% url 'allturfs' %}">View all turfs</a>
+                      <a class="btn btn-dark" href="{% url 'managebookings' %}">Manage bookings</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+        <div class="card card-light-blue">
+          <div class="card-body">
+            <h2 class="mb-4">Your turfs</h2>
+            <h2 class="fs-30 mb-2">{{ ytdata.count }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 stretch-card transparent">
+        <div class="card card-light-danger">
+          <div class="card-body">
+            <h2 class="mb-4">Turfs</h2>
+            <h2 class="fs-30 mb-2">{{ tdata.count }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+      <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+        <div class="card card-dark-blue">
+          <div class="card-body">
+            <h2 class="mb-4">Bookings</h2>
+            <h2 class="fs-30 mb-2">{{ bdata.count }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

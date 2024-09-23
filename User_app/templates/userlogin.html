@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block nav %}{% endblock %}
+{% block content %}
+
+<div class="p-5 bg-light rounded ">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12">
+            <div class="text-center mx-auto" style="max-width: 700px;">
+                <h1 class="text-primary">Login</h1>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <form action="{% url 'usersession' %}" method="post" >
+                {% csrf_token %}
+                <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Username" name="username">
+                <input type="password" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your password" name="password">
+                {{msg}}
+                <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Login</button>
+            </form>
+            <p>Not registered yet?</p> <a href="{% url 'userregister' %}" class="nav-item nav-link">Sign up</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
