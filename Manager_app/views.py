@@ -90,6 +90,6 @@ def updatebooking(request,id):
     return redirect('managebookings')
 
 def deletebooking(request,id):
-    booking.objects.filter(id=id).delete()
+    booking.objects.filter(id=id).update(booked='rejected')
     return redirect('managebookings')
 # Create your views here.
