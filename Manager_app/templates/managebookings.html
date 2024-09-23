@@ -30,6 +30,8 @@
                         <td>{{ i.booked }}</td>
                         {% if i.booked == 'not booked yet' %}
                         <td><label class="badge badge-danger">Pending</label><a href="{% url 'updatebooking' id=i.id %}">approve</a><a class="m-2" href="{% url 'deletebooking' id=i.id %}">Decline</a></td>
+                        {% elif i.booked == 'rejected' %}
+                        <td><label class="badge badge-warning">Rejected</label></td>
                         {% else %}
                         <td><label class="badge badge-success">Approved</label></td>
                         {% endif %}
