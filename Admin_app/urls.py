@@ -20,5 +20,4 @@ urlpatterns = [
     path('viewusers',views.viewusers,name='viewusers'),
     path('verifyuser<int:id>',views.verifyuser,name='verifyuser'),
     path('viewbookings',views.viewbookings,name='viewbookings')
-
 ]

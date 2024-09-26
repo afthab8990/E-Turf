@@ -116,5 +116,5 @@ def viewbookings(request):
     data=booking.objects.all()
     return render(request,'viewbookings.html',{'data':data})
 
+# More to come
 
-# Create your views here.
